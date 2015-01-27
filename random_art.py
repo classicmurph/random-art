@@ -6,9 +6,8 @@ from math import sin, cos, tan, tanh, pi, sinh, cosh
 # run_expression to create random art.
 # Your expression should have a __str__() function defined for it.
 
-funx = ['sin(x/2)', 'cos(y ** 3)', '(2 * sin(x))', 'y**6', '(x)',
-        'tan(x ** random.randint(0, 40))', 'cos(y*x**2)', '100',
-        'random.randrange(0, 1000)*cos(y)', 'tanh(x)', 'sinh(pi)']
+funx = ['sin(x)', 'cos(y)', '(2 * sin(x))', '2 * y',
+        'sinh(x)', 'cos(x)', 'tan(y)']
 
 
 class Expression:
@@ -20,23 +19,20 @@ class Expression:
         value = '1'
         for (command, coord) in self.commands:
             if command == "norm" and coord == "x":
-                for _ in range(random.randint(5, 10)):
+                for _ in range(random.randint(1, 5)):
                     value = value + ' * ' + random.choice(funx)
-                    eval(value)
             elif command == "norm" and coord == "y":
-                for _ in range(random.randint(5, 10)):
+                for _ in range(random.randint(1, 5)):
                     value = value + ' * ' + random.choice(funx)
-                    eval(value)
             elif command == "crazy" and coord == "x":
-                for _ in range(random.randint(10, 30)):
+                for _ in range(random.randint(3, 12)):
                     value = value + ' * ' + random.choice(funx)
-                    eval(value)
             else:
-                for _ in range(random.randint(10, 30)):
+                for _ in range(random.randint(3, 12)):
                     value = value + ' * ' + random.choice(funx)
-                    eval(value)
 
-        return sin(eval(value))
+
+        return eval(value)
 
 
     def __str__(self):
@@ -55,7 +51,7 @@ def create_expression():
 
     expr = Expression()
 
-    for _ in range(10):
+    for _ in range(3):
         if random.random() > 0.5:
             x_or_y = "x"
         else:
